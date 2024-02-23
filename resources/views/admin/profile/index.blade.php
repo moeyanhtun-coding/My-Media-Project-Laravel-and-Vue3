@@ -1,49 +1,44 @@
 @extends('admin.layouts.main')
 @section('content')
-    <div class="row">
-        <div class="row">
-            <div class="col text-center">
-                <h1>My Profile</h1>
+    <div class="col-8 offset-3 mt-5">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header p-2">
+                    <legend class="text-center">User Profile</legend>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="activity">
+                            <form class="form-horizontal">
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <a href="">Change Password</a>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn bg-dark text-white">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <form action="">
-            <div class="container ">
-                <div class="row my-2 justify-content-center d-flex">
-                    <label class="col-2" for="">Name</label>
-                    <div class="col-5">
-                        <input class="form-control" type="text">
-                    </div>
-                </div>
-                <div class="row my-2 justify-content-center d-flex">
-                    <label class="col-2" for="">Email</label>
-                    <div class="col-5">
-                        <input class="form-control" type="text">
-                    </div>
-                </div>
-                <div class="row my-2 justify-content-center d-flex">
-                    <label class="col-2" for="">Phone</label>
-                    <div class="col-5">
-                        <input class="form-control" type="text">
-                    </div>
-                </div>
-                <div class="row my-2 justify-content-center d-flex">
-                    <label class="col-2" for="">Address</label>
-                    <div class="col-5">
-                        <textarea class="form-control" name="" id="" cols="40" rows="10"></textarea>
-                    </div>
-                </div>
-                <div class="row my-2 justify-content-center d-flex">
-                    <div class="">
-                        <a href="" class="offset-6">Forgotten Password</a>
-                    </div>
-                </div>
-                <div class="row my-2 d-felx justify-content-center">
-                    <div class="col-12">
-                        <button class="offset-5 w-25 btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-
     </div>
 @endsection

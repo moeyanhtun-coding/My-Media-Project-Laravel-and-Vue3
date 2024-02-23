@@ -28,7 +28,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     #profile
-    Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [ProfileController::class, 'index'])->name('admin#profile');
 
     #category
     Route::get('admin/category', [CategoryController::class, 'index'])->name('admin#category');
