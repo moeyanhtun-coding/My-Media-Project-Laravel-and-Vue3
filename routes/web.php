@@ -29,7 +29,7 @@ Route::middleware([
 ])->group(function () {
     #profile
     Route::get('/dashboard', [ProfileController::class, 'index'])->name('admin#profile');
-
+    Route::post('admin/profile/update', [ProfileController::class, 'updateAdminProfile'])->name('admin#profileUpdate');
     #category
     Route::get('admin/category', [CategoryController::class, 'index'])->name('admin#category');
 

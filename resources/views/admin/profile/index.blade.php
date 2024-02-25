@@ -9,20 +9,62 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
-                            <form class="form-horizontal">
+                            @if (Session::has('update_success'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <p> {{ Session::get('update_success') }}</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+                            <form class="form-horizontal" method="post" action="{{ route('admin#profileUpdate') }}">
+                                @csrf
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="text" class="form-control" id="inputName" placeholder="Name"
+                                            name="name" value="{{ $data->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email"
+                                            value="{{ $data->email }}" name="email">
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="inputEmail" placeholder="Phone"
+                                            value="{{ $data->phone }}" name="phone">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="address" class="form-control" id="" cols="30" rows="10" placeholder="Address">{{ $data->address }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Gender</label>
+                                    <div class="col-sm-10">
+                                        <select name="gender" id="" class="form-control">
+                                            @if ($data->gender == 'male')
+                                                <option value="">Gender</option>
+                                                <option value="male" selected>Male</option>
+                                                <option value="female">Female</option>
+                                            @elseif ($data->gender == 'female')
+                                                <option value="">Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female" selected>Female</option>
+                                            @else
+                                                <option value="" selected>Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="offset-sm-2 col-sm-10">
                                         <a href="">Change Password</a>
