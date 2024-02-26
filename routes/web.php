@@ -30,6 +30,8 @@ Route::middleware([
     #profile
     Route::get('/dashboard', [ProfileController::class, 'index'])->name('admin#profile');
     Route::post('admin/profile/update', [ProfileController::class, 'updateAdminProfile'])->name('admin#profileUpdate');
+    Route::get('admin/password/change', [ProfileController::class, 'passwordChnage'])->name('admin#passwordChangePage');
+    Route::post('admin/change/password', [ProfileController::class, 'changePassword'])->name('admin#changePassword');
     #category
     Route::get('admin/category', [CategoryController::class, 'index'])->name('admin#category');
 
