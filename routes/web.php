@@ -37,6 +37,8 @@ Route::middleware([
 
     #list
     Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');
+    Route::get('admin/delete/{id}', [ListController::class, 'accountDelete'])->name('admin#delete');
+    Route::post('admin/list', [ListController::class, 'accountSearch'])->name('admin#search');
 
     #post
     Route::get('admin/post', [PostController::class, 'index'])->name('admin#post');

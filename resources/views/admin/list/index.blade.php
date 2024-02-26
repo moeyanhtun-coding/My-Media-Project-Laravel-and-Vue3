@@ -7,16 +7,21 @@
                     Admin List
                 </h3>
 
-                <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
+                <div class="card-tools">
+                    <form action="{{ route('admin#search') }}" method="POST">
+                        @csrf
+                        <div class="input-group input-group-sm" style="width: 150px;">
+
+                            <input type="text" name="adminSearch" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -25,48 +30,32 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category Name</th>
-                            <th>Created Date</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Gender</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Vegatable</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Seafood</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Thailand</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>USA</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                        @foreach ($data as $admin)
+                            <tr>
+                                <td>{{ $admin->id }}</td>
+                                <td>{{ $admin->name }}</td>
+                                <td>{{ $admin->address }}</td>
+                                <td>{{ $admin->phone }}</td>
+                                <td>{{ $admin->gender }}</td>
+                                <td>
+                                    @if ($admin->id === Auth::user()->id)
+                                    @else
+                                        <a href="{{ route('admin#delete', $admin->id) }}">
+                                            <button class="btn btn-sm bg-danger text-white"><i
+                                                    class="fas fa-trash-alt"></i></button>
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

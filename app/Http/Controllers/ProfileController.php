@@ -33,6 +33,7 @@ class ProfileController extends Controller
     {
         return view('admin.profile.changePassword');
     }
+
     // change admin password
     public function changePassword(Request $request)
     {
