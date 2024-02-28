@@ -34,6 +34,11 @@ Route::middleware([
     Route::post('admin/change/password', [ProfileController::class, 'changePassword'])->name('admin#changePassword');
     #category
     Route::get('admin/category', [CategoryController::class, 'index'])->name('admin#category');
+    Route::post('admin/category/create', [CategoryController::class, 'categoryCreate'])->name('category#create');
+    Route::get('admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category#delete');
+    Route::get('admin/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category#edit');
+    Route::post('admin/category/edit/{id}', [CategoryController::class, 'categoryUpdate'])->name('category#update');
+    Route::post('admin/category', [CategoryController::class, 'categorySearch'])->name('category#search');
 
     #list
     Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');

@@ -3,30 +3,39 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">
-                    Category Create
-                </h3>
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title">
+                        Category Create
+                    </h3>
+                    <div class="">
+                        <a class="text-decoration-none text-dark" href="{{ route('admin#category') }}">
+                            Back
+                        </a>
+                    </div>
+                </div>
+
             </div>
             <div class="card-body">
-                <form action="{{ route('category#create') }}" method="post">
+                <form action="{{ route('category#update', $data->category_id) }}" method="post">
                     @csrf
                     <div class="">
                         <label for="" class="">Category Title</label>
-                        <input type="text" name="categoryTitle" class="form-control">
+                        <input type="text" value="{{ $data->title }}" name="categoryTitle" class="form-control">
                     </div>
                     @error('categoryTitle')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                     <div class="mt-3">
                         <label class="" for="">Description</label>
-                        <textarea name="categoryDescription" class="form-control" id="" cols="30" rows="10"></textarea>
+                        <textarea name="categoryDescription" class="form-control" id="" cols="30" rows="10">{{ $data->description }}</textarea>
                     </div>
                     @error('categoryDescription')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
 
                     <div class="mt-3">
-                        <button class="btn btn-dark w-25" type="submit">Create</button>
+                        <button class="btn btn-success w-25" type="submit">Update</button>
+
                     </div>
                 </form>
             </div>
@@ -38,6 +47,13 @@
                 <div class="col-5 offset-7">
                     <div class="alert alert-danger alert-dismissible fade show" style="height: 56px" role="alert">
                         <p class="">{{ Session::get('success') }}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @elseif (Session::has('update_success'))
+                <div class="col-5 offset-7">
+                    <div class="alert alert-success alert-dismissible fade show" style="height: 56px" role="alert">
+                        <p class="">{{ Session::get('update_success') }}</p>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
@@ -83,14 +99,20 @@
                                 <td>{{ $cl->title }}</td>
                                 <td>{{ Str::limit($cl->description, 20, ' ...') }}</td>
                                 <td>
-                                    <a class="text-decoration-none" href="{{ route('category#edit', $cl->category_id) }}">
-                                        <button class="  btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                    </a>
-                                    <a class="text-decoration-none"
-                                        href="{{ route('category#delete', $cl->category_id) }}"><button
-                                            class="btn btn-sm bg-danger text-white"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </a>
+                                    @if ($cl->category_id === $data->category_id)
+                                        <a href="{{ route('category#delete', $cl->category_id) }}"><button
+                                                class="btn btn-sm bg-danger text-white"><i
+                                                    class="fas fa-trash-alt"></i></button></a>
+                                    @else
+                                        <a class="text-decoration-none"
+                                            href="{{ route('category#edit', $cl->category_id) }}">
+                                            <button class="  btn btn-sm bg-dark text-white"><i
+                                                    class="fas fa-edit"></i></button>
+                                        </a>
+                                        <a href="{{ route('category#delete', $cl->category_id) }}"><button
+                                                class="btn btn-sm bg-danger text-white"><i
+                                                    class="fas fa-trash-alt"></i></button></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

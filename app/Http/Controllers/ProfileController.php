@@ -22,6 +22,7 @@ class ProfileController extends Controller
     // update admin update
     public function updateAdminProfile(Request $request)
     {
+        dd($request->all());
         $this->validationCheck($request);
         $data = $this->updateData($request);
         User::where('id', Auth::user()->id)->update($data);
