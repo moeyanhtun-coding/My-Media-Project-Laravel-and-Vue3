@@ -27,27 +27,33 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    #profile
+
     Route::get('/dashboard', [ProfileController::class, 'index'])->name('admin#profile');
-    Route::post('admin/profile/update', [ProfileController::class, 'updateAdminProfile'])->name('admin#profileUpdate');
-    Route::get('admin/password/change', [ProfileController::class, 'passwordChnage'])->name('admin#passwordChangePage');
-    Route::post('admin/change/password', [ProfileController::class, 'changePassword'])->name('admin#changePassword');
-    #category
-    Route::get('admin/category', [CategoryController::class, 'index'])->name('admin#category');
-    Route::post('admin/category/create', [CategoryController::class, 'categoryCreate'])->name('category#create');
-    Route::get('admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category#delete');
-    Route::get('admin/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category#edit');
-    Route::post('admin/category/edit/{id}', [CategoryController::class, 'categoryUpdate'])->name('category#update');
-    Route::post('admin/category', [CategoryController::class, 'categorySearch'])->name('category#search');
 
-    #list
-    Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');
-    Route::get('admin/delete/{id}', [ListController::class, 'accountDelete'])->name('admin#delete');
-    Route::post('admin/list', [ListController::class, 'accountSearch'])->name('admin#search');
+    Route::prefix('admin/')->group(function () {
+        #profile
+        Route::post('profile/update', [ProfileController::class, 'updateAdminProfile'])->name('admin#profileUpdate');
+        Route::get('password/change', [ProfileController::class, 'passwordChnage'])->name('admin#passwordChangePage');
+        Route::post('change/password', [ProfileController::class, 'changePassword'])->name('admin#changePassword');
 
-    #post
-    Route::get('admin/post', [PostController::class, 'index'])->name('admin#post');
+        #category
+        Route::get('category', [CategoryController::class, 'index'])->name('admin#category');
+        Route::post('category/create', [CategoryController::class, 'categoryCreate'])->name('category#create');
+        Route::get('category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category#delete');
+        Route::get('category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category#edit');
+        Route::post('category/edit', [CategoryController::class, 'categoryUpdate'])->name('category#update');
+        Route::post('category', [CategoryController::class, 'categorySearch'])->name('category#search');
 
-    #trendPost
-    Route::get('admin/trend_post', [TrendPostController::class, 'index'])->name('admin#trendPost');
+        #list
+        Route::get('list', [ListController::class, 'index'])->name('admin#list');
+        Route::get('delete/{id}', [ListController::class, 'accountDelete'])->name('admin#delete');
+        Route::post('list', [ListController::class, 'accountSearch'])->name('admin#search');
+
+        #post
+        Route::get('post', [PostController::class, 'index'])->name('admin#post');
+        Route::post('post/create', [PostController::class, 'postCreate'])->name('post#create');
+        Route::get('post/delete/{id}', [PostController::class, 'postDelete'])->name('post#delete');
+        #trendPost
+        Route::get('trend_post', [TrendPostController::class, 'index'])->name('admin#trendPost');
+    });
 });

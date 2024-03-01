@@ -16,11 +16,12 @@
 
             </div>
             <div class="card-body">
-                <form action="{{ route('category#update', $data->category_id) }}" method="post">
+                <form action="{{ route('category#update') }}" method="post">
                     @csrf
                     <div class="">
                         <label for="" class="">Category Title</label>
                         <input type="text" value="{{ $data->title }}" name="categoryTitle" class="form-control">
+                        <input type="hidden" value="{{ $data->id }}" name="categoryID">
                     </div>
                     @error('categoryTitle')
                         <small class="text-danger">{{ $message }}</small>
@@ -95,21 +96,20 @@
                     <tbody>
                         @foreach ($categoryList as $cl)
                             <tr>
-                                <td>{{ $cl->category_id }}</td>
+                                <td>{{ $cl->id }}</td>
                                 <td>{{ $cl->title }}</td>
                                 <td>{{ Str::limit($cl->description, 20, ' ...') }}</td>
                                 <td>
-                                    @if ($cl->category_id === $data->category_id)
-                                        <a href="{{ route('category#delete', $cl->category_id) }}"><button
+                                    @if ($cl->id === $data->id)
+                                        <a href="{{ route('category#delete', $cl->id) }}"><button
                                                 class="btn btn-sm bg-danger text-white"><i
                                                     class="fas fa-trash-alt"></i></button></a>
                                     @else
-                                        <a class="text-decoration-none"
-                                            href="{{ route('category#edit', $cl->category_id) }}">
+                                        <a class="text-decoration-none" href="{{ route('category#edit', $cl->id) }}">
                                             <button class="  btn btn-sm bg-dark text-white"><i
                                                     class="fas fa-edit"></i></button>
                                         </a>
-                                        <a href="{{ route('category#delete', $cl->category_id) }}"><button
+                                        <a href="{{ route('category#delete', $cl->id) }}"><button
                                                 class="btn btn-sm bg-danger text-white"><i
                                                     class="fas fa-trash-alt"></i></button></a>
                                     @endif

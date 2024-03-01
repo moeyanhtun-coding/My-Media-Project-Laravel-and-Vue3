@@ -73,21 +73,22 @@
                             <th>ID</th>
                             <th>Category Name</th>
                             <th>Category Description</th>
+                            <th>Created At</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($categoryList as $cl)
                             <tr>
-                                <td>{{ $cl->category_id }}</td>
+                                <td>{{ $cl->id }}</td>
                                 <td>{{ $cl->title }}</td>
                                 <td>{{ Str::limit($cl->description, 20, ' ...') }}</td>
+                                <td>{{ $cl->created_at->format('d-m-Y') }}</td>
                                 <td>
-                                    <a class="text-decoration-none" href="{{ route('category#edit', $cl->category_id) }}">
+                                    <a class="text-decoration-none" href="{{ route('category#edit', $cl->id) }}">
                                         <button class="  btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
                                     </a>
-                                    <a class="text-decoration-none"
-                                        href="{{ route('category#delete', $cl->category_id) }}"><button
+                                    <a class="text-decoration-none" href="{{ route('category#delete', $cl->id) }}"><button
                                             class="btn btn-sm bg-danger text-white"><i
                                                 class="fas fa-trash-alt"></i></button>
                                     </a>
