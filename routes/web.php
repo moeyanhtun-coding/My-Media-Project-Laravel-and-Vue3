@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TrendPostController;
+use PHPUnit\Framework\Attributes\PostCondition;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,8 @@ Route::middleware([
         Route::get('post', [PostController::class, 'index'])->name('admin#post');
         Route::post('post/create', [PostController::class, 'postCreate'])->name('post#create');
         Route::get('post/delete/{id}', [PostController::class, 'postDelete'])->name('post#delete');
+        Route::get('post/edit/{id}', [PostController::class, 'postEdit'])->name('post#edit');
+        Route::post('post/update', [PostController::class, 'postUpdate'])->name('post#update');
         #trendPost
         Route::get('trend_post', [TrendPostController::class, 'index'])->name('admin#trendPost');
     });
