@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +18,19 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-
-
-Route::post('user/login', [AuthController::class, 'login']);
-Route::post('user/register', [AuthController::class, 'register']);
-
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::get('category', function () {
-    return response()->json([
-        'message' => 'this is category'
-    ]);
-})->middleware('auth:sanctum');
+
+// Auth controller
+Route::post('user/login', [AuthController::class, 'login']);
+Route::post('user/register', [AuthController::class, 'register']);
+
+// category controller
+Route::get('user/get/category', [CategoryController::class, 'getCategory']);
+Route::post('searchCategory', [CategoryController::class, 'searchCategory']);
+
+// post controller
+Route::post('user/get/post/search', [PostController::class, 'searchPost']);
+Route::get('user/get/post', [PostController::class, 'getPost']);

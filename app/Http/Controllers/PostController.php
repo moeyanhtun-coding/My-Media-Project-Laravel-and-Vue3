@@ -91,6 +91,13 @@ class PostController extends Controller
         return back()->with(['updated' => 'Post Updated']);
     }
 
+    // search post
+    public function postSearch(Request $request){
+        $category = Category::get();
+        $postList = Post::orWhere('title','LIKE','%' . $request->postSearch . '%',)
+        ->orWhere('description','LIKE','%' . $request->postSearch . '%',)->get();
+        return view('admin.post.index', compact('postList','category'));
+    }
     // get data post
     private function postGetData($request)
     {

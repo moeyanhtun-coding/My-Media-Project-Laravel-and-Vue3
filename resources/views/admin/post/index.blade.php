@@ -67,10 +67,10 @@
                 </h3>
 
                 <div class="card-tools">
-                    <form action="" method="post">
+                    <form action="{{ route('post#search') }}" method="post">
                         @csrf
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="categorySearch" class="form-control float-right"
+                            <input type="text" name="postSearch" class="form-control float-right"
                                 placeholder="Search">
 
                             <div class="input-group-append">
@@ -103,8 +103,8 @@
                                 <td>{{ $pl->categoryName }}</td>
                                 <td>
                                     @if ($pl->image == 'null')
-                                        <img src="{{ asset('default/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg.webp') }}"
-                                            class="img img-thumbnail" style=" width:150px" alt="Default img">
+                                        <img src="{{ asset('default/default.webp') }}" class="img img-thumbnail"
+                                            style=" width:150px" alt="Default img">
                                     @else
                                         <img src="{{ asset('PostImage/' . $pl->image) }}" alt="{{ $pl->image }}"
                                             class="img img-thumbnail" style=" width:150px">
