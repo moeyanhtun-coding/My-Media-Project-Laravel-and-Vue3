@@ -25,48 +25,34 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category Name</th>
-                            <th>Created Date</th>
+                            <th>Post Title</th>
+                            <th>Image</th>
+                            <th>View Count</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Vegatable</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Seafood</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Thailand</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>USA</td>
-                            <td>11-7-2014</td>
-                            <td>
-                                <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                        @foreach ($data as $al)
+                            <tr>
+                                <td>{{ $al->actionLog_id }}</td>
+                                <td>{{ $al->title }}</td>
+                                <td>
+                                    @if ($al->image == 'null')
+                                        <img src="{{ asset('default/default.webp') }}" class="img img-thumbnail"
+                                            style=" width:150px" alt="">
+                                    @else
+                                        <img src="{{ asset('PostImage/' . $al->image) }}" alt="{{ $al->image }}"
+                                            class="img img-thumbnail" style=" width:150px">
+                                    @endif
+                                </td>
+                                <td>
+                                    <i class="fa-solid fa-eye"></i> {{ $al->view_count }}
+                                </td>
+                                <td><a class="bg-dark btn btn-dark" href="{{ route('post#detail', $al->post_id) }}"><i
+                                            class="fa-solid fa-circle-info"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

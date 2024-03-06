@@ -56,8 +56,9 @@ Route::middleware([
         Route::get('post/delete/{id}', [PostController::class, 'postDelete'])->name('post#delete');
         Route::get('post/edit/{id}', [PostController::class, 'postEdit'])->name('post#edit');
         Route::post('post/update', [PostController::class, 'postUpdate'])->name('post#update');
-        Route::post('post/search',[PostController::class, 'postSearch'])->name('post#search');
+        Route::post('post/search', [PostController::class, 'postSearch'])->name('post#search');
         #trendPost
         Route::get('trend_post', [TrendPostController::class, 'index'])->name('admin#trendPost');
+        Route::get('trend/post/detail/{id}', [TrendPostController::class, 'getData'])->name('post#detail');
     });
 });

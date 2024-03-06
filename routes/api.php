@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActionLogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -34,4 +35,7 @@ Route::post('searchCategory', [CategoryController::class, 'searchCategory']);
 // post controller
 Route::post('user/get/post/search', [PostController::class, 'searchPost']);
 Route::get('user/get/post', [PostController::class, 'getPost']);
-Route::post('user/get/post/detail',[PostController::class,'detailPost']);
+Route::post('user/get/post/detail', [PostController::class, 'detailPost']);
+
+//action log contorller
+Route::post('actionLog', [ActionLogController::class, 'getActionLog']);
