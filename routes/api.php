@@ -34,3 +34,4 @@ Route::post('searchCategory', [CategoryController::class, 'searchCategory']);
 // post controller
 Route::post('user/get/post/search', [PostController::class, 'searchPost']);
 Route::get('user/get/post', [PostController::class, 'getPost']);
+Route::post('user/get/post/detail',[PostController::class,'detailPost']);

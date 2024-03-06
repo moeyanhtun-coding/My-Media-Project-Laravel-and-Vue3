@@ -70,8 +70,7 @@
                     <form action="{{ route('post#search') }}" method="post">
                         @csrf
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="postSearch" class="form-control float-right"
-                                placeholder="Search">
+                            <input type="text" name="postSearch" class="form-control float-right" placeholder="Search">
 
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default">
@@ -104,7 +103,7 @@
                                 <td>
                                     @if ($pl->image == 'null')
                                         <img src="{{ asset('default/default.webp') }}" class="img img-thumbnail"
-                                            style=" width:150px" alt="Default img">
+                                            style=" width:150px" alt="">
                                     @else
                                         <img src="{{ asset('PostImage/' . $pl->image) }}" alt="{{ $pl->image }}"
                                             class="img img-thumbnail" style=" width:150px">
